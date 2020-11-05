@@ -9,4 +9,4 @@ repos:
     hooks:
     - id: black
       args: [--check]
-      language_version: python3.8
+      language_version: python3.9
