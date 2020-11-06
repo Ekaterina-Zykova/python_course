@@ -12,8 +12,12 @@ from typing import Tuple
 
 
 def find_maximum_and_minimum(file_name: str) -> Tuple[int, int]:
-    numbers = []
+    max_num = float('-inf')
+    min_num = float('inf')
     with open(file_name) as fi:
         for line in fi:
-            numbers.append((int(line)))
-    return min(numbers), max(numbers)
+            if int(line) < min_num:
+                min_num = int(line)
+            if int(line) > max_num:
+                max_num = int(line)
+    return min_num, max_num
