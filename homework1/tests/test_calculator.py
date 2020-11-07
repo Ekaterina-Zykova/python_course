@@ -1,5 +1,4 @@
 import pytest
-
 from calculator.calc import check_power_of_2
 
 
@@ -17,7 +16,7 @@ from calculator.calc import check_power_of_2
         (-200000000000, False),
         (-65536, False),
         (68719476736, True),
-        (0, False)
+        (0, False),
     ],
 )
 def test_power_of_2(value: int, expected_result: bool):

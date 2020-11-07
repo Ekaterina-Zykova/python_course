@@ -10,12 +10,14 @@ from typing import List
 
 
 def find_maximal_subarray_sum(nums: List[int], k: int) -> int:
-    max_sum = sum(nums[:k])
-    i = 0
-    while k != len(nums):
-        i += 1
-        k += 1
-        tmp_sum = sum(nums[i:k])
-        if tmp_sum > max_sum:
-            max_sum = tmp_sum
-    return max_sum
+    if k < len(nums) and k != 0:
+        max_sum = sum(nums[:k])
+        i = 0
+        while k != len(nums):
+            i += 1
+            k += 1
+            tmp_sum = sum(nums[i:k])
+            if tmp_sum > max_sum:
+                max_sum = tmp_sum
+        return max_sum
+    return sum(nums)

@@ -1,13 +1,14 @@
-import pytest
-
-from find_maxmin.maxmin import find_maximum_and_minimum
+import os
 from typing import Tuple
+
+import pytest
+from task03.find_maxmin import find_maximum_and_minimum
 
 
 @pytest.mark.parametrize(
     ["file_name", "expected_result"],
     [
-        ("homework1/task03/tests/test_file.txt", (1, 5)),
+        (os.path.join(r"homework1\tests\test_file.txt"), (1, 5)),
     ],
 )
 def test_find_max_and_min(file_name: str, expected_result: Tuple[int, int]):
