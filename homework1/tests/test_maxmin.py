@@ -2,7 +2,8 @@ import os
 from typing import Tuple
 
 import pytest
-from task03.find_maxmin import find_maximum_and_minimum
+
+from homework1.task03.find_maxmin import find_maximum_and_minimum
 
 
 @pytest.mark.parametrize(

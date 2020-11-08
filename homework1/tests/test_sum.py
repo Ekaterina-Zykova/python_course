@@ -1,7 +1,8 @@
 from typing import List
 
 import pytest
-from task04.check_sum import check_sum_of_four
+
+from homework1.task04.check_sum import check_sum_of_four
 
 
 @pytest.mark.parametrize(

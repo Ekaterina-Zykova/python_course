@@ -1,7 +1,8 @@
 from collections.abc import Sequence
 
 import pytest
-from task02.check_fib import check_fibonacci
+
+from homework1.task02.check_fib import check_fibonacci
 
 
 @pytest.mark.parametrize(
