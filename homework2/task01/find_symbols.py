@@ -72,7 +72,7 @@ def count_punctuation_chars(file_path: str) -> int:
 
 
 def count_non_ascii_chars(file_path: str) -> int:
-    ascii = tuple(range(127))
+    ascii = tuple(range(128))
     counter = 0
     with open(file_path, "r", encoding="unicode-escape", errors="replace") as file:
         for line in file:
