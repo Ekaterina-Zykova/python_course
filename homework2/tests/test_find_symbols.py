@@ -11,23 +11,25 @@ from homework2.task01.find_symbols import (
     get_rarest_char,
 )
 
+file_path = os.path.join("homework2", "data.txt")
+
 
 @pytest.mark.parametrize(
     ["file_path", "expected_result"],
     [
         (
-            os.path.join("homework2", "data.txt"),
+            file_path,
             [
-                "verfassungsverletzungen",
-                "mehrheitsvorstellungen",
-                "politischstrategischen",
-                "souveränitätsansprüche",
-                "symbolischsakramentale",
-                "wiederbelebungsübungen",
                 "werkstättenlandschaft",
-                "geschichtsphilosophie",
-                "menschheitsgeschichte",
+                "zoologischpolitischen",
                 "werkstättenlandschaft",
+                "entscheidungsschlacht",
+                "résistancebewegungen",
+                "bevölkerungsabschub",
+                "kollektivschuldiger",
+                "unmißverständliche",
+                "friedensabstimmung",
+                "selbstverständlich",
             ],
         ),
     ],
@@ -40,7 +42,7 @@ def test_get_longest_diverse_words(file_path: str, expected_result: List[str]):
 @pytest.mark.parametrize(
     ["file_path", "expected_result"],
     [
-        (os.path.join("homework2", "data.txt"), "›"),
+        (file_path, "›"),
     ],
 )
 def test_get_rarest_char(file_path: str, expected_result: str):
@@ -51,7 +53,7 @@ def test_get_rarest_char(file_path: str, expected_result: str):
 @pytest.mark.parametrize(
     ["file_path", "expected_result"],
     [
-        (os.path.join("homework2", "data.txt"), 5305),
+        (file_path, 5305),
     ],
 )
 def test_count_punctuation_chars(file_path: str, expected_result: int):
@@ -62,7 +64,7 @@ def test_count_punctuation_chars(file_path: str, expected_result: int):
 @pytest.mark.parametrize(
     ["file_path", "expected_result"],
     [
-        (os.path.join("homework2", "data.txt"), 2972),
+        (file_path, 2972),
     ],
 )
 def test_count_non_ascii_chars(file_path: str, expected_result: int):
@@ -73,7 +75,7 @@ def test_count_non_ascii_chars(file_path: str, expected_result: int):
 @pytest.mark.parametrize(
     ["file_path", "expected_result"],
     [
-        (os.path.join("homework2", "data.txt"), "ä"),
+        (file_path, "ä"),
     ],
 )
 def test_get_most_common_non_ascii_char(file_path: str, expected_result: str):

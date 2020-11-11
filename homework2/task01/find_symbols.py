@@ -6,62 +6,63 @@ Given a file containing text. Complete using only default collections:
     4) Count every non ascii char
     5) Find most common non ascii char for document
 """
+from collections import defaultdict
 from typing import List
 
 
 def get_longest_diverse_words(file_path: str) -> List[str]:
     long_words = []
-    punctuation = """!"#$%&'()*+,-./:;<=>?@[]^_`{|}~"""
-    paragraph = ""
+    punctuation = """!"#$%&'()*+,./:;<=>?@[]^_`{|}~"""
+    word_break = ""
+    word_break2 = ""
     with open(file_path, "r", encoding="unicode-escape", errors="replace") as file:
         for line in file:
-            if line != "\n":
-                # delete \n, », «, —
-                line = (
-                    line.rstrip("\n")
-                    .strip("\u00bb")
-                    .strip("\u00ab")
-                    .replace("\u2014", "")
-                )
-                if line[-1] == "-":
-                    # join word break
-                    paragraph += line
+            # delete », «, —
+            line = (
+                line.lower()
+                .strip()
+                .strip("\u00bb")
+                .strip("\u00ab")
+                .replace("\u2014", "")
+            )
+            line = line.translate(str.maketrans("", "", punctuation))
+            line = line.split()
+            if line and line[-1][-1] == "-":
+                if word_break:
+                    word_break2 = line[-1][:-1]
+                    word_break += line[0]
+                    line = line[1:]
                 else:
-                    paragraph += line + " "
-            else:
-                paragraph = paragraph.lower().strip()
-                paragraph = paragraph.translate(str.maketrans("", "", punctuation))
-                for word in paragraph.split():
-                    if len(long_words) < 10:
+                    word_break = line[-1][:-1]
+                line = line[:-1]
+                line.append(word_break)
+                word_break = word_break2
+            for word in line:
+                word = word.replace("-", "")
+                if len(long_words) == 10:
+                    if len(set(word)) > len(set(long_words[-1])):
                         long_words.append(word)
                         long_words.sort(key=len, reverse=True)
-                    else:
-                        if len(word) > len(long_words[-1]):
-                            long_words.append(word)
-                            long_words.sort(key=len, reverse=True)
-                            long_words.pop()
-                        elif len(word) == len(long_words[-1]):
-                            if len(set(word)) > len(set(long_words[0])):
-                                long_words.pop()
-                                long_words.append(word)
-                paragraph = ""
+                        long_words.pop()
+                else:
+                    long_words.append(word)
+                    long_words.sort(key=len, reverse=True)
     return long_words
 
 
 def get_rarest_char(file_path: str) -> str:
-    chars = dict()
+    chars = defaultdict(int)
     with open(file_path, "r", encoding="unicode-escape", errors="replace") as file:
         for line in file:
             for word in line.split():
                 for char in word.lower():
-                    chars[char] = chars.get(char, 0) + 1
+                    chars[char] += 1
     return min(chars, key=chars.get)
 
 
 def count_punctuation_chars(file_path: str) -> int:
     counter = 0
     punctuation = """!"#$%&'()*+, -./:;<=>?@[]^_`{|}~"""
-    list_char = []
     with open(file_path, "r", encoding="unicode-escape", errors="replace") as file:
         for line in file:
             for word in line.split():
@@ -85,11 +86,11 @@ def count_non_ascii_chars(file_path: str) -> int:
 
 def get_most_common_non_ascii_char(file_path: str) -> str:
     ascii = tuple(range(128))
-    non_ascii_chars = dict()
+    non_ascii_chars = defaultdict(int)
     with open(file_path, "r", encoding="unicode-escape", errors="replace") as file:
         for line in file:
             for word in line:
                 for char in word:
                     if ord(char) not in ascii:
-                        non_ascii_chars[char] = non_ascii_chars.get(char, 0) + 1
+                        non_ascii_chars[char] += 1
     return max(non_ascii_chars, key=non_ascii_chars.get)
