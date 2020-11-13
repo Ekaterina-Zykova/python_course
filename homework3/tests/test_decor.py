@@ -1,0 +1,22 @@
+from typing import Any, Tuple
+
+import pytest
+
+from homework3.task01.decorator import cache
+
+
+@pytest.mark.parametrize(
+    ["times", "args", "expected_result"],
+    [(2, (100, 200), True), (10, (100, 200), True)],
+)
+def test_cache(times: int, args: Tuple[Any], expected_result: bool):
+    @cache(times=times)
+    def func(a: int, b: int) -> int:
+        return a ** b ** 2
+
+    id_result_for_n_times = [id(func(*args)) for i in range(times + 1)]
+    id_result_for_more_n_times = id(func(*args))
+
+    actual_result = id_result_for_n_times != id_result_for_more_n_times
+
+    assert actual_result == expected_result
