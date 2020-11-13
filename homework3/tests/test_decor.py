@@ -14,12 +14,13 @@ def test_cache(times: int, args: Tuple[Any], expected_result: bool):
     def func(a: int, b: int) -> int:
         return a ** b ** 2
 
-    result_for_n_times = [func(*args) for i in range(times + 1)]
+    result_for_n_times = [func(*args) for _ in range(times + 1)]
     result_for_more_n_times = func(*args)
 
     actual_result = True
     for result in result_for_n_times:
         if result is result_for_more_n_times:
             actual_result = False
+            break
 
     assert actual_result == expected_result
