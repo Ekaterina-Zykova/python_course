@@ -32,15 +32,10 @@ def slow_calculate(value):
 
 
 def slow_calc_with_mp(value: int) -> int:
-    start_time = time.time()
-
     p = Pool(processes=30)
-    sum(list(p.map(slow_calculate, range(value + 1))))
+    result = sum(int(res) for res in p.map(slow_calculate, range(value + 1)))
 
     p.close()
     p.join()
 
-    end_time = time.time()
-    result_time = round(end_time - start_time)
-
-    return result_time
+    return result
