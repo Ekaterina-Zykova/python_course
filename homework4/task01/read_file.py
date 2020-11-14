@@ -27,4 +27,11 @@ You will learn:
 
 
 def read_magic_number(path: str) -> bool:
-    ...
+    with open(path, "r") as file:
+        first_line = file.readline().strip()
+        if first_line.isdigit():
+            if int(first_line) in range(1, 3):
+                return True
+            return False
+        else:
+            raise ValueError("Digit required")
