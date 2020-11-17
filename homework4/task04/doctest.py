@@ -63,6 +63,3 @@ def fizzbuzz(n: int) -> List[str]:
                 tmp_result += "buzz"
             fizzbuzz_list.append(tmp_result)
     return fizzbuzz_list
-
-
-print(fizzbuzz(15))
