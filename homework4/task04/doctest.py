@@ -53,13 +53,16 @@ def fizzbuzz(n: int) -> List[str]:
     """
     fizzbuzz_list = []
     for i in range(1, n + 1):
-        if i % 3 == 0:
-            if i % 5 == 0:
-                fizzbuzz_list.append("fizzbuzz")
-            else:
-                fizzbuzz_list.append("fizz")
-        elif i % 5 == 0:
-            fizzbuzz_list.append("buzz")
-        else:
+        tmp_result = ""
+        if i % 3 != 0 and i % 5 != 0:
             fizzbuzz_list.append(str(i))
+        else:
+            if i % 3 == 0:
+                tmp_result += "fizz"
+            if i % 5 == 0:
+                tmp_result += "buzz"
+            fizzbuzz_list.append(tmp_result)
     return fizzbuzz_list
+
+
+print(fizzbuzz(15))
