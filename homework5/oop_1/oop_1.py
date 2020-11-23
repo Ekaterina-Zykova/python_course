@@ -34,6 +34,7 @@ PEP8 соблюдать строго.
 давать логичные подходящие имена.
 """
 import datetime
+from typing import Optional
 
 
 class Homework:
@@ -43,9 +44,7 @@ class Homework:
         self.created = datetime.datetime.now()
 
     def is_active(self):
-        return (
-            True if (self.deadline + self.created) > datetime.datetime.now() else False
-        )
+        return self.deadline + self.created > datetime.datetime.now()
 
 
 class Student:
@@ -54,8 +53,12 @@ class Student:
         self.last_name = last_name
 
     @staticmethod
-    def do_homework(homework: Homework):
-        return homework if homework.is_active() else "You are late"
+    def do_homework(homework: Homework) -> Optional[Homework]:
+        if homework.is_active():
+            return homework
+        else:
+            print("You are late")
+            return None
 
 
 class Teacher:

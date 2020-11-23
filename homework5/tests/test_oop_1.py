@@ -31,9 +31,12 @@ def test_create_homework(text: str, deadline: int):
     assert test_homework.text == text
 
 
-def test_do_homework():
+def test_do_homework(capsys):
     student = Student("Roman", "Petrov")
     homework_on_time = Homework("test1", 5)
     homework_late = Homework("test2", 0)
-    assert student.do_homework(homework_on_time) == homework_on_time
-    assert student.do_homework(homework_late) == "You are late"
+    assert student.do_homework(homework_on_time) is homework_on_time
+    assert (
+        student.do_homework(homework_late) is None
+        and capsys.readouterr().out.strip() == "You are late"
+    )
