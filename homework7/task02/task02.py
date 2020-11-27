@@ -18,10 +18,10 @@ Examples:
 def del_backspace(string: str) -> list[str]:
     list_str = []
     for symbol in string:
-        if symbol == "#" and list_str:
-            list_str.pop()
-        else:
+        if symbol != "#":
             list_str.append(symbol)
+        elif list_str:
+            list_str.pop()
     return list_str
 
 

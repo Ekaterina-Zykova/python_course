@@ -27,4 +27,20 @@ from typing import Any
 
 
 def find_occurrences(tree: dict, element: Any) -> int:
-    return str(tree).count(element)
+    count = 0
+    for value in tree.values():
+        if isinstance(value, dict):
+            count += find_occurrences(value, element)
+        elif (
+            isinstance(value, list)
+            or isinstance(value, tuple)
+            or isinstance(value, set)
+        ):
+            for subvalue in value:
+                if isinstance(subvalue, dict):
+                    count += find_occurrences(subvalue, element)
+                elif element == subvalue:
+                    count += 1
+        elif element == value:
+            count += 1
+    return count
