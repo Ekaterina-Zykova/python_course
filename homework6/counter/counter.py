@@ -10,23 +10,24 @@ reset_instances_counter - сбросить счетчик экземпляров
 
 
 def instances_counter(cls):
-    setattr(cls, "counter", 0)
+    class Wrapper(cls):
+        counter = 0
 
-    def counter_init(self):
-        cls.counter += 1
+        def __init__(self):
+            super().__init__()
+            cls.counter += 1
 
-    def get_created_instances(*args, **kwargs) -> int:
-        return cls.counter
+        @classmethod
+        def get_created_instances(cls) -> int:
+            return cls.counter
 
-    def reset_instances_counter(*args, **kwargs) -> int:
-        last_counter = cls.counter
-        cls.counter = 0
-        return last_counter
+        @classmethod
+        def reset_instances_counter(cls) -> int:
+            last_counter = cls.counter
+            cls.counter = 0
+            return last_counter
 
-    setattr(cls, "__init__", counter_init)
-    setattr(cls, "get_created_instances", get_created_instances)
-    setattr(cls, "reset_instances_counter", reset_instances_counter)
-
+    cls = Wrapper
     return cls
 
 

@@ -42,6 +42,7 @@ PEP8 соблюдать строго.
 """
 import datetime
 from collections import defaultdict
+from typing import Optional
 
 
 class DeadlineError(Exception):
@@ -58,15 +59,6 @@ class Homework:
         return self.deadline + self.created > datetime.datetime.now()
 
 
-class HomeworkResult:
-    def __init__(self, author, homework, solution):
-        if not isinstance(homework, Homework):
-            raise TypeError("You gave a not Homework object")
-        self.author = author
-        self.homework = homework
-        self.solution = solution
-
-
 class Person:
     def __init__(self, first_name, last_name):
         self.first_name = first_name
@@ -74,11 +66,22 @@ class Person:
 
 
 class Student(Person):
-    def do_homework(self, homework: Homework, solution: str) -> HomeworkResult:
+    def do_homework(
+        self, homework: Homework, solution: str
+    ) -> Optional["HomeworkResult"]:
         if homework.is_active():
             return HomeworkResult(self, homework, solution)
         else:
             raise DeadlineError("You are late")
+
+
+class HomeworkResult:
+    def __init__(self, author: Student, homework: Homework, solution: str):
+        if not isinstance(homework, Homework):
+            raise TypeError("You gave a not Homework object")
+        self.author = author
+        self.homework = homework
+        self.solution = solution
 
 
 class Teacher(Person):
@@ -96,7 +99,7 @@ class Teacher(Person):
         return False
 
     @classmethod
-    def reset_results(cls, homework: Homework = None):
+    def reset_results(cls, homework: Optional[Homework] = None):
         if homework is None:
             cls.homework_done.clear()
         else:
