@@ -15,22 +15,16 @@ def instances_counter(cls):
 
         def __init__(self):
             super().__init__()
-            cls.counter += 1
+            Wrapper.counter += 1
 
         @classmethod
         def get_created_instances(cls) -> int:
-            return cls.counter
+            return Wrapper.counter
 
         @classmethod
         def reset_instances_counter(cls) -> int:
-            last_counter = cls.counter
-            cls.counter = 0
+            last_counter = Wrapper.counter
+            Wrapper.counter = 0
             return last_counter
 
-    cls = Wrapper
-    return cls
-
-
-@instances_counter
-class User:
-    pass
+    return Wrapper

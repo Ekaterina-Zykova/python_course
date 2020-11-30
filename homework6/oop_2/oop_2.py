@@ -60,28 +60,28 @@ class Homework:
 
 
 class Person:
-    def __init__(self, first_name, last_name):
+    def __init__(self, first_name: str, last_name: str):
         self.first_name = first_name
         self.last_name = last_name
 
 
-class Student(Person):
-    def do_homework(
-        self, homework: Homework, solution: str
-    ) -> Optional["HomeworkResult"]:
-        if homework.is_active():
-            return HomeworkResult(self, homework, solution)
-        else:
-            raise DeadlineError("You are late")
-
-
 class HomeworkResult:
-    def __init__(self, author: Student, homework: Homework, solution: str):
+    def __init__(self, author, homework: Homework, solution: str):
         if not isinstance(homework, Homework):
             raise TypeError("You gave a not Homework object")
         self.author = author
         self.homework = homework
         self.solution = solution
+
+
+class Student(Person):
+    def do_homework(
+        self, homework: Homework, solution: str
+    ) -> Optional[HomeworkResult]:
+        if homework.is_active():
+            return HomeworkResult(self, homework, solution)
+        else:
+            raise DeadlineError("You are late")
 
 
 class Teacher(Person):
