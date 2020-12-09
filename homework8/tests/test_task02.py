@@ -1,5 +1,5 @@
 import sqlite3
-from typing import Any, List
+from typing import Any, Tuple
 
 import pytest
 
@@ -11,14 +11,14 @@ presidents = TableData(database_name="example.sqlite", table_name="presidents")
 @pytest.mark.parametrize(
     ["table", "key", "expected_result"],
     [
-        (presidents, "Yeltsin", [("Yeltsin", 999, "Russia")]),
-        (presidents, "Russia", [("Yeltsin", 999, "Russia")]),
-        (presidents, "Trump", [("Trump", 1337, "US")]),
-        (presidents, "Big Man Tyrone", [("Big Man Tyrone", 101, "Kekistan")]),
-        (presidents, "101", [("Big Man Tyrone", 101, "Kekistan")]),
+        (presidents, "Yeltsin", ("Yeltsin", 999, "Russia")),
+        (presidents, "Russia", ("Yeltsin", 999, "Russia")),
+        (presidents, "Trump", ("Trump", 1337, "US")),
+        (presidents, "Big Man Tyrone", ("Big Man Tyrone", 101, "Kekistan")),
+        (presidents, "101", ("Big Man Tyrone", 101, "Kekistan")),
     ],
 )
-def test_getitem(table: TableData, key: str, expected_result: List[Any]):
+def test_getitem(table: TableData, key: str, expected_result: Tuple[Any]):
     actual_result = table[key]
     assert actual_result == expected_result
 
