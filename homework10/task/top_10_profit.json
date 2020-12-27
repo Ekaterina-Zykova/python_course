@@ -1,0 +1,52 @@
+[
+    {
+        "name": "Tesla",
+        "code": "TSLA",
+        "profit": 891.41
+    },
+    {
+        "name": "Apache Corp.",
+        "code": "APA",
+        "profit": 786.35
+    },
+    {
+        "name": "Norwegian Cruise Line Ltd",
+        "code": "NCLH",
+        "profit": 750.36
+    },
+    {
+        "name": "Royal Caribbean Cruises Ltd.",
+        "code": "RCL",
+        "profit": 602.08
+    },
+    {
+        "name": "Carnival Corp & plc paired",
+        "code": "CCL",
+        "profit": 565.83
+    },
+    {
+        "name": "ONEOK Inc (New)",
+        "code": "OKE",
+        "profit": 545.31
+    },
+    {
+        "name": "Halliburton Co.",
+        "code": "HAL",
+        "profit": 499.29
+    },
+    {
+        "name": "MGM Resorts International",
+        "code": "MGM",
+        "profit": 486.54
+    },
+    {
+        "name": "Devon Energy Corp.",
+        "code": "DVN",
+        "profit": 473.83
+    },
+    {
+        "name": "Occidental Petroleum Corp.",
+        "code": "OXY",
+        "profit": 457.68
+    }
+]

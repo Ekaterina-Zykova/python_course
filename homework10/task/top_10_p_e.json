@@ -1,0 +1,52 @@
+[
+    {
+        "name": "DXC Technology",
+        "code": "DXC",
+        "p_e": 2.58
+    },
+    {
+        "name": "Unum Group",
+        "code": "UNM",
+        "p_e": 5.28
+    },
+    {
+        "name": "American Airlines Inc",
+        "code": "AAL",
+        "p_e": 5.84
+    },
+    {
+        "name": "Hewlett Packard Enterprise Co.",
+        "code": "HPE",
+        "p_e": 6.23
+    },
+    {
+        "name": "Invesco Ltd",
+        "code": "IVZ",
+        "p_e": 7.08
+    },
+    {
+        "name": "United Airlines Holdings Inc Registered Shs",
+        "code": "UAL",
+        "p_e": 7.31
+    },
+    {
+        "name": "General Motors",
+        "code": "GM",
+        "p_e": 7.59
+    },
+    {
+        "name": "Franklin Resources Inc.",
+        "code": "BEN",
+        "p_e": 7.73
+    },
+    {
+        "name": "HP Inc (ex Hewlett-Packard)",
+        "code": "HPQ",
+        "p_e": 7.75
+    },
+    {
+        "name": "Ford Motor Co.",
+        "code": "F",
+        "p_e": 7.88
+    }
+]

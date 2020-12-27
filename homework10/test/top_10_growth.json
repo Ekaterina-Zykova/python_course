@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Zoeti a",
+        "code": "ZTS",
+        "growth": 11.49
+    },
+    {
+        "name": "YUM! Brands Inc.",
+        "code": "YUM",
+        "growth": -2.78
+    },
+    {
+        "name": "Zimmer Biomet",
+        "code": "ZBH",
+        "growth": -10.37
+    },
+    {
+        "name": "Zions Bancorporation",
+        "code": " ZION",
+        "growth": -25.32
+    }
+]
