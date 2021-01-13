@@ -28,17 +28,28 @@ assert order_1.final_price() == 50
 order_2 = Order(100, elder_discount)
 assert order_2.final_price() == 10
 """
-from typing import Callable, Union
+from abc import ABC, abstractmethod
+from typing import Union
+
+
+class DiscountStrategy(ABC):
+    @abstractmethod
+    def final_price(self, price: Union[float, int]):
+        pass
 
 
 class Order:
-    _usual_discount = 0.25
-
-    def __init__(self, price: Union[float, int], discount: Callable = None):
+    def __init__(self, price: Union[float, int], discount: DiscountStrategy) -> None:
         self.price = price
-        self.discount = discount
+        self._discount = discount
+
+    @property
+    def discount_strategy(self) -> DiscountStrategy:
+        return self._discount
+
+    @discount_strategy.setter
+    def discount_strategy(self, discount: DiscountStrategy) -> None:
+        self._discount = discount
 
     def final_price(self) -> Union[float, int]:
-        if self.discount:
-            return self.discount(self.price)
-        return self.price - self.price * self._usual_discount
+        return self._discount.final_price(self.price)
